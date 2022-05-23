@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prestage
+  namespace: zakir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prestage
+  template:
+    metadata:
+      labels:
+        app: prestage
+    spec:
+      containers:
+      - name: prestage
+        image: shaikzakir119/utils:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8081
+

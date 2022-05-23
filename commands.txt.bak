@@ -1,0 +1,56 @@
+ kubectl get gateway -n zakir
+  522  kubectl expose deployment  prestage --type=NodePort --port=8081 --target-port=8081 -n zakir
+  523  kubectl get svc -n zakir
+  524  curl http://localhost:30515/utils/wait/10
+  525  curl http://localhost:30515/utils/wait/5
+  526  kubectl get svc/virtualservice -n zakir
+  527  kubectl get virtualservice -n zakir
+  528  kubectl describe virtualservice prestage-virtualservice -n zakir
+  529  curl http://localhost:30515/utils/wait/4
+  530  curl http://localhost:30515/utils/prestage/1
+  531  curl http://localhost:30515/utils/prestage/wait/1
+  532  curl http://localhost:30515/utils/wait/prestage
+  533  curl http://localhost:30515/utils/wait/prestage/5
+  534  curl http://localhost:30515/utils/wait/3
+  535  curl http://localhost:30515/utils/wait/15
+  536  kubectl get virtualservice -n zakir
+  537  kubectl edit virtualservice prestage-virtualservice-n zakir
+  538  kubectl edit virtualservice prestage-virtualservice -n zakir
+  539  curl http://localhost:30515/utils/prestage/5
+  540  kubectl describe virtualservice prestage-virtualservice -n zakir
+  541  kubectl get pod -n zakir
+  542  kubectl get ns
+  543  kubectl label namespace default istio-injection=enabled
+  544  kubectl label namespace zakir istio-injection=enabled
+  545  kubectl delete ns zakir
+  546  kubectl create ns zakir
+  547  kubectl label namespace default istio-injection=enabled
+  548  ls
+  549  kubectl label namespace zakir istio-injection=enabled
+  550  kubectl create -f prestage-deployment.yaml -n zakir
+  551  kubectl get all -n zakir
+  552  ls
+  553  kubectl get all -n zakir
+  554  kubectl describe pod pod/prestage-85cdbc98dd-62b9l-n zakir
+  555  kubectl describe pod pod/prestage-85cdbc98dd-62b9l -n zakir
+  556  kubectl describe pod/prestage-85cdbc98dd-62b9l -n zakir
+  557  kubectl get all -n zakir
+  558  kubectl get all
+  559  kubectl get allc -n zakir
+  560  kubectl get all -n zakir
+  561  kubectl expose deployment  prestage --type=NodePort --port=8081 --target-port=8081 -n zakir
+  562  kubectl get all -n zakir
+  563  ls
+  564  kubectl create -f prestage-gateway.yaml -n zakir
+  565  kubectl get gateway -n zakir
+  566  kubectl create -f prestage-vs-all.yaml -n zakir
+  567  kubectl get all -n zakir
+  568  kubectl get virtualservice -n zakir
+  
+  export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+export TCP_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="tcp")].nodePort}')
+export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
+export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+echo $GATEWAY_URL
+
